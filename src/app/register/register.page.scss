@@ -1,0 +1,18 @@
+.error-message {
+    color: var(--ion-color-danger);
+    font-size: 12px;
+    margin: -10px 0 15px 15px;
+  }
+  
+  .login-link {
+    margin-top: 20px;
+    text-align: center;
+  
+    p {
+      margin-bottom: 5px;
+    }
+  }
+  
+  ion-button[type="submit"] {
+    margin-top: 20px;
+  }

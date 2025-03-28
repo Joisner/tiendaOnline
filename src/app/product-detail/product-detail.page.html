@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/products"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="!isLoading && product" class="product-detail">
+    <div class="product-image-container">
+      <ion-img [src]="product.image" class="product-image"></ion-img>
+    </div>
+    
+    <div class="product-info">
+      <h1>{{ product.title }}</h1>
+      <p class="category">{{ product.category }}</p>
+      <p class="price">${{ product.price.toFixed(2) }}</p>
+      <p class="description">{{ product.description }}</p>
+      
+      <ion-button 
+        expand="block" 
+        (click)="addToCart()" 
+        [disabled]="isAddingToCart"
+        class="add-to-cart-button"
+      >
+        <ion-spinner *ngIf="isAddingToCart"></ion-spinner>
+        <span *ngIf="!isAddingToCart">Agregar al Carrito</span>
+      </ion-button>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && !product" class="error-container">
+    <p>Producto no encontrado</p>
+    <ion-button routerLink="/products">Volver a Productos</ion-button>
+  </div>
+</ion-content>

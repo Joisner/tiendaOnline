@@ -1,0 +1,25 @@
+.product-card {
+    .product-image {
+      height: 250px;
+      width: 100%;
+      object-fit: cover;
+    }
+  
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--ion-color-primary);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  
+      ion-button {
+        margin: 0;
+      }
+    }
+  }

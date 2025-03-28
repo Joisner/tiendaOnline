@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/products"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <ion-text color="medium">
+      <h2>Tu carrito está vacío</h2>
+      <p>Agrega algunos productos para comenzar</p>
+    </ion-text>
+    <ion-button routerLink="/products" expand="block">
+      Ir a Productos
+    </ion-button>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="cart-content">
+    <ion-list>
+      <ion-item *ngFor="let item of cartItems">
+        <ion-label>
+          <h2>{{ item.title }}</h2>
+          <p>Precio: ${{ item.price.toFixed(2) }}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button (click)="updateQuantity(item.id, item.quantity - 1)" fill="clear">-</ion-button>
+          <ion-text>{{ item.quantity }}</ion-text>
+          <ion-button (click)="updateQuantity(item.id, item.quantity + 1)" fill="clear">+</ion-button>
+          <ion-button (click)="removeFromCart(item.id)" color="danger" fill="clear">
+            Eliminar
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+
+    <div class="cart-total">
+      <h2>Total: ${{ total.toFixed(2) }}</h2>
+      <ion-button expand="block" color="primary">
+        Proceder al Pago
+      </ion-button>
+      <ion-button expand="block" color="medium" (click)="clearCart()">
+        Vaciar Carrito
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

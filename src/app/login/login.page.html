@@ -1,0 +1,33 @@
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <h1>Iniciar Sesión</h1>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <div class="error-message" *ngIf="isFieldInvalid('email')">
+        Email inválido
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="error-message" *ngIf="isFieldInvalid('password')">
+        La contraseña debe tener al menos 6 caracteres
+      </div>
+
+      <ion-button expand="block" type="submit" [disabled]="loginForm.invalid || isLoading">
+        <ion-spinner *ngIf="isLoading"></ion-spinner>
+        <span *ngIf="!isLoading">Iniciar Sesión</span>
+      </ion-button>
+    </form>
+
+    <div class="register-link">
+      <p>¿No tienes una cuenta?</p>
+      <ion-button fill="clear" (click)="goToRegister()">Registrarse</ion-button>
+    </div>
+  </div>
+</ion-content>
